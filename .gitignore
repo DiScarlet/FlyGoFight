@@ -1,0 +1,82 @@
+# ================================
+# Unity generated folders
+# ================================
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+
+# ================================
+# Unity cache / crash reports
+# ================================
+sysinfo.txt
+crashlytics-build.properties
+
+# ================================
+# IDE / Editor files
+# ================================
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.sln
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.suo
+*.tmp
+*.tmp_proj
+*.log
+
+# ================================
+# Rider / Visual Studio
+# ================================
+.idea/
+*.resharper
+*.DotSettings.user
+
+# ================================
+# OS generated files
+# ================================
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ================================
+# Unity meta handling
+# ================================
+# Ignore meta files for files that no longer exist
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# ================================
+# Build artifacts
+# ================================
+*.apk
+*.aab
+*.unitypackage
+*.exe
+*.app
+
+# ================================
+# Addressables & StreamingAssets cache
+# ================================
+/Assets/AddressableAssetsData/*/*.bin*
+/Assets/StreamingAssets/aa.meta
+/Assets/StreamingAssets/aa/*
+
+# ================================
+# Firebase / analytics (optional)
+# ================================
+**/google-services.json
+**/GoogleService-Info.plist
