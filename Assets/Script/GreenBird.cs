@@ -1,15 +1,34 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class GreenBird : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class GreenBird : MonoBehaviour,
+    IPointerDownHandler,
+    IPointerUpHandler,
+    IDragHandler
 {
+    private SpriteRenderer spriteRenderer;
+    private Camera mainCamera;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        mainCamera = Camera.main;
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        GetComponent<SpriteRenderer>().color = Color.red;
+        spriteRenderer.color = Color.red;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        GetComponent<SpriteRenderer>().color = Color.white;
+        spriteRenderer.color = Color.white;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        Vector3 worldPos = mainCamera.ScreenToWorldPoint(eventData.position);
+        worldPos.z = transform.position.z;
+        transform.position = worldPos;
     }
 }
