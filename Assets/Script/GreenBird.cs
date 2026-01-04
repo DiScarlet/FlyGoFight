@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class GreenBird : MonoBehaviour,
     IPointerDownHandler,
@@ -8,13 +9,38 @@ public class GreenBird : MonoBehaviour,
 {
     private SpriteRenderer spriteRenderer;
     private Camera mainCamera;
-    Vector3 _initialPosition;
+    private Vector3 _initialPosition;
+    private bool _birdLaunched;
+    private float _timeSittingAround;
+
+    [SerializeField] private float _launchPower = 500;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         mainCamera = Camera.main;
         _initialPosition = transform.position;
+    }
+
+    private void Update()
+    {
+        //idle position
+        if(_birdLaunched && 
+            GetComponent<Rigidbody2D>().linearVelocity.magnitude <= 0.1)
+        {
+            _timeSittingAround += Time.deltaTime;
+        }
+        //check for chicken outside of current camera bounds - hardcoded for now
+        if (transform.position.y > 10 || 
+            transform.position.y < -10 ||
+            transform.position.x > 10 ||
+            transform.position.x < -10 ||
+            _timeSittingAround > 3)
+        {
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentSceneName);
+        }
+
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -27,9 +53,11 @@ public class GreenBird : MonoBehaviour,
         spriteRenderer.color = Color.white;
 
         Vector2 directionToInitialPosition = _initialPosition - transform.position;
-        //
-        GetComponent<Rigidbody2D>().AddForce(directionToInitialPosition * 100);
+    
+        GetComponent<Rigidbody2D>().AddForce(directionToInitialPosition * _launchPower);
         GetComponent<Rigidbody2D>().gravityScale = 1;
+
+        _birdLaunched = true;
     }
 
     public void OnDrag(PointerEventData eventData)
