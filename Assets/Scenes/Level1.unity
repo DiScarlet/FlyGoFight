@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 4540757}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.34, y: -0.01, z: 0}
+  m_LocalPosition: {x: 9.79, y: -0.17, z: 0}
   m_LocalScale: {x: 0.5466, y: 0.5371, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -515,7 +515,7 @@ Transform:
   m_GameObject: {fileID: 148633017}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8800001, y: 1.56, z: 0}
+  m_LocalPosition: {x: -1.85, y: 1.62, z: 0}
   m_LocalScale: {x: 0.3318, y: 0.3318, z: 0.3318}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -610,7 +610,7 @@ Transform:
   m_GameObject: {fileID: 323769816}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01830814, y: -0.08049125, z: -10}
+  m_LocalPosition: {x: 4.628896, y: -0.19593762, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -870,7 +870,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01830814, y: -0.08049125, z: -10}
+  m_LocalPosition: {x: 4.628896, y: -0.19593762, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1153,7 +1153,7 @@ Transform:
   m_GameObject: {fileID: 1457386405}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.02, y: -0, z: 0}
+  m_LocalPosition: {x: 8.63, y: -0.16, z: 0}
   m_LocalScale: {x: 0.5466, y: 0.5371, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1411,7 +1411,7 @@ Transform:
   m_GameObject: {fileID: 1482996651}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01830814, y: -0.08049125, z: 0}
+  m_LocalPosition: {x: 4.628896, y: -0.19593762, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2350,10 +2350,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1090051092970745789, guid: 4ce4849a815160148a50805a1fc0b558, type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4502408769467720129, guid: 4ce4849a815160148a50805a1fc0b558, type: 3}
       propertyPath: m_Name
       value: Cloud Particles
