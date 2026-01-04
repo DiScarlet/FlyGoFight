@@ -24,8 +24,11 @@ public class GreenBird : MonoBehaviour,
 
     private void Update()
     {
+        GetComponent<LineRenderer>().SetPosition(1, _initialPosition);
+        GetComponent<LineRenderer>().SetPosition(0, transform.position);
+
         //idle position
-        if(_birdLaunched && 
+        if (_birdLaunched && 
             GetComponent<Rigidbody2D>().linearVelocity.magnitude <= 0.1)
         {
             _timeSittingAround += Time.deltaTime;
@@ -46,6 +49,7 @@ public class GreenBird : MonoBehaviour,
     public void OnPointerDown(PointerEventData eventData)
     {
         spriteRenderer.color = Color.red;
+        GetComponent<LineRenderer>().enabled = true;
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -58,6 +62,8 @@ public class GreenBird : MonoBehaviour,
         GetComponent<Rigidbody2D>().gravityScale = 1;
 
         _birdLaunched = true;
+
+        GetComponent<LineRenderer>().enabled = false;
     }
 
     public void OnDrag(PointerEventData eventData)
