@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 4540761}
   - component: {fileID: 4540760}
   - component: {fileID: 4540759}
+  - component: {fileID: 4540763}
   m_Layer: 0
   m_Name: BlueMonster (1)
   m_TagString: Untagged
@@ -148,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 4540757}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.7200003, y: 1.08, z: 0}
+  m_LocalPosition: {x: 7.62, y: 1.43, z: 0}
   m_LocalScale: {x: 0.5466, y: 0.5371, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -341,6 +342,19 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &4540763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4540757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3d5085e1f2bfd4a87689c6bd8a773e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  _cloudParticlesPrefab: {fileID: 4502408769467720129, guid: 4ce4849a815160148a50805a1fc0b558, type: 3}
 --- !u!1 &148633017
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,7 +610,7 @@ Transform:
   m_GameObject: {fileID: 323769816}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.4259555, y: 0.103965245, z: -10}
+  m_LocalPosition: {x: 3.404773, y: 0.14912759, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -856,7 +870,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.4259555, y: 0.103965245, z: -10}
+  m_LocalPosition: {x: 3.404773, y: 0.14912759, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1122,6 +1136,7 @@ GameObject:
   - component: {fileID: 1457386409}
   - component: {fileID: 1457386408}
   - component: {fileID: 1457386407}
+  - component: {fileID: 1457386411}
   m_Layer: 0
   m_Name: BlueMonster
   m_TagString: Untagged
@@ -1138,7 +1153,7 @@ Transform:
   m_GameObject: {fileID: 1457386405}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.64, y: -0.5, z: 0}
+  m_LocalPosition: {x: 7.539999, y: -0.1500001, z: 0}
   m_LocalScale: {x: 0.5466, y: 0.5371, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1331,6 +1346,19 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1457386411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457386405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3d5085e1f2bfd4a87689c6bd8a773e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  _cloudParticlesPrefab: {fileID: 4502408769467720129, guid: 4ce4849a815160148a50805a1fc0b558, type: 3}
 --- !u!1 &1482996651
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,7 +1411,7 @@ Transform:
   m_GameObject: {fileID: 1482996651}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.4259555, y: 0.103965245, z: 0}
+  m_LocalPosition: {x: 3.404773, y: 0.14912759, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1501,7 +1529,7 @@ Transform:
   m_GameObject: {fileID: 1497193847}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.82, y: 0.71, z: 0}
+  m_LocalPosition: {x: -1.85, y: -0.08, z: 0}
   m_LocalScale: {x: 0.24328814, y: 0.2233155, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2270,6 +2298,63 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.72, y: 0.42847967}
   m_EdgeRadius: 0
+--- !u!1001 &4755024676138008454
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4502408769467720129, guid: 4ce4849a815160148a50805a1fc0b558, type: 3}
+      propertyPath: m_Name
+      value: Cloud Particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990410761195257381, guid: 4ce4849a815160148a50805a1fc0b558, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.84913
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990410761195257381, guid: 4ce4849a815160148a50805a1fc0b558, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990410761195257381, guid: 4ce4849a815160148a50805a1fc0b558, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990410761195257381, guid: 4ce4849a815160148a50805a1fc0b558, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990410761195257381, guid: 4ce4849a815160148a50805a1fc0b558, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990410761195257381, guid: 4ce4849a815160148a50805a1fc0b558, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990410761195257381, guid: 4ce4849a815160148a50805a1fc0b558, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990410761195257381, guid: 4ce4849a815160148a50805a1fc0b558, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990410761195257381, guid: 4ce4849a815160148a50805a1fc0b558, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990410761195257381, guid: 4ce4849a815160148a50805a1fc0b558, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4ce4849a815160148a50805a1fc0b558, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2282,3 +2367,4 @@ SceneRoots:
   - {fileID: 734982623}
   - {fileID: 323769819}
   - {fileID: 1482996653}
+  - {fileID: 4755024676138008454}
