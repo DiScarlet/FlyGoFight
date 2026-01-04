@@ -80,3 +80,7 @@ Desktop.ini
 # ================================
 **/google-services.json
 **/GoogleService-Info.plist
+
+# Unity Package Manager packages
+Packages/com.unity.cinemachine/
+Packages/com.unity.inputsystem/

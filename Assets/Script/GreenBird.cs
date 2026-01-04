@@ -24,8 +24,9 @@ public class GreenBird : MonoBehaviour,
 
     private void Update()
     {
-        GetComponent<LineRenderer>().SetPosition(1, _initialPosition);
         GetComponent<LineRenderer>().SetPosition(0, transform.position);
+        GetComponent<LineRenderer>().SetPosition(1, _initialPosition);
+        
 
         //idle position
         if (_birdLaunched && 
