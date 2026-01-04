@@ -8,11 +8,13 @@ public class GreenBird : MonoBehaviour,
 {
     private SpriteRenderer spriteRenderer;
     private Camera mainCamera;
+    Vector3 _initialPosition;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         mainCamera = Camera.main;
+        _initialPosition = transform.position;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -23,6 +25,11 @@ public class GreenBird : MonoBehaviour,
     public void OnPointerUp(PointerEventData eventData)
     {
         spriteRenderer.color = Color.white;
+
+        Vector2 directionToInitialPosition = _initialPosition - transform.position;
+        //
+        GetComponent<Rigidbody2D>().AddForce(directionToInitialPosition * 100);
+        GetComponent<Rigidbody2D>().gravityScale = 1;
     }
 
     public void OnDrag(PointerEventData eventData)

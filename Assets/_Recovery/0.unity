@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 1497193852}
   - component: {fileID: 1497193853}
   m_Layer: 0
-  m_Name: frame-1_0
+  m_Name: Green Bird
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -340,7 +340,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.47, y: 2.07, z: 0}
-  m_LocalScale: {x: 0.24328814, y: 0.2233155, z: 1}
+  m_LocalScale: {x: 0.2146081, y: 0.19698995, z: 0.8821149}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -360,7 +360,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -670,7 +670,7 @@ GameObject:
   - component: {fileID: 2053850864}
   - component: {fileID: 2053850866}
   m_Layer: 0
-  m_Name: parallax-mountain_0
+  m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -744,8 +744,8 @@ Transform:
   m_GameObject: {fileID: 2053850863}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0799, y: 1.56, z: 0}
-  m_LocalScale: {x: 8.701195, y: 8.9701, z: 1}
+  m_LocalPosition: {x: -0.4588, y: 1.9012, z: 0}
+  m_LocalScale: {x: 7.9091, y: 8.543766, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
