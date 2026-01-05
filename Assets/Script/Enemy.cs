@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        GreenBird bird = collision.collider.GetComponent<GreenBird>();
+        BirdMain bird = collision.collider.GetComponent<BirdMain>();
         
         if (bird != null)
         {

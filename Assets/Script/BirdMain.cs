@@ -1,17 +1,20 @@
+//Main Bird's script
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class GreenBird : MonoBehaviour,
+public class BirdMain : MonoBehaviour,
     IPointerDownHandler,
     IPointerUpHandler,
     IDragHandler
 {
     private SpriteRenderer spriteRenderer;
     private Camera mainCamera;
-    private Vector3 _initialPosition;
+    private Vector3 _anchorPosition;
     private bool _birdLaunched;
     private float _timeSittingAround;
+    private PolygonCollider2D _collider;
+    private Rigidbody2D _rigidBody;
 
     [SerializeField] private float _launchPower = 500;
 
@@ -19,13 +22,15 @@ public class GreenBird : MonoBehaviour,
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         mainCamera = Camera.main;
-        _initialPosition = transform.position;
+        _anchorPosition = transform.position;
+        _collider = GetComponent<PolygonCollider2D>();
+        _rigidBody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
         GetComponent<LineRenderer>().SetPosition(0, transform.position);
-        GetComponent<LineRenderer>().SetPosition(1, _initialPosition);
+        GetComponent<LineRenderer>().SetPosition(1, _anchorPosition);
         
 
         //idle position
@@ -49,15 +54,24 @@ public class GreenBird : MonoBehaviour,
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        _anchorPosition = transform.position;
+
         spriteRenderer.color = Color.red;
         GetComponent<LineRenderer>().enabled = true;
+
+        _collider.enabled = false;
+        _rigidBody.gravityScale = 0;
+        
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        _collider.enabled = true;
+        _rigidBody.gravityScale = 1;
+
         spriteRenderer.color = Color.white;
 
-        Vector2 directionToInitialPosition = _initialPosition - transform.position;
+        Vector2 directionToInitialPosition = _anchorPosition - transform.position;
     
         GetComponent<Rigidbody2D>().AddForce(directionToInitialPosition * _launchPower);
         GetComponent<Rigidbody2D>().gravityScale = 1;
