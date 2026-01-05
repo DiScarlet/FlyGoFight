@@ -15,13 +15,19 @@ public class BirdMain : MonoBehaviour,
     private float _timeSittingAround;
     private PolygonCollider2D _collider;
     private Rigidbody2D _rigidBody;
+    private LineRenderer lr;
+
+    public LayerMask groundLayer;
 
     [SerializeField] private float _launchPower = 500;
+    [SerializeField] private float maxPullDistance = 2.5f;
+    [SerializeField] private float skinWidth = 0.05f;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         mainCamera = Camera.main;
+        lr = GetComponent<LineRenderer>();
         _anchorPosition = transform.position;
         _collider = GetComponent<PolygonCollider2D>();
         _rigidBody = GetComponent<Rigidbody2D>();
@@ -29,13 +35,13 @@ public class BirdMain : MonoBehaviour,
 
     private void Update()
     {
-        GetComponent<LineRenderer>().SetPosition(0, transform.position);
-        GetComponent<LineRenderer>().SetPosition(1, _anchorPosition);
+        lr.SetPosition(0, transform.position);
+        lr.SetPosition(1, _anchorPosition);
         
 
         //idle position
-        if (_birdLaunched && 
-            GetComponent<Rigidbody2D>().linearVelocity.magnitude <= 0.1)
+        if (_birdLaunched &&
+            _rigidBody.linearVelocity.magnitude <= 0.1)
         {
             _timeSittingAround += Time.deltaTime;
         }
@@ -57,34 +63,52 @@ public class BirdMain : MonoBehaviour,
         _anchorPosition = transform.position;
 
         spriteRenderer.color = Color.red;
-        GetComponent<LineRenderer>().enabled = true;
+        lr.enabled = true;
 
-        _collider.enabled = false;
         _rigidBody.gravityScale = 0;
         
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        _collider.enabled = true;
-        _rigidBody.gravityScale = 1;
-
         spriteRenderer.color = Color.white;
 
         Vector2 directionToInitialPosition = _anchorPosition - transform.position;
-    
-        GetComponent<Rigidbody2D>().AddForce(directionToInitialPosition * _launchPower);
-        GetComponent<Rigidbody2D>().gravityScale = 1;
+
+        _rigidBody.AddForce(directionToInitialPosition * _launchPower);
+        _rigidBody.gravityScale = 1;
 
         _birdLaunched = true;
 
-        GetComponent<LineRenderer>().enabled = false;
+        lr.enabled = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Vector3 worldPos = mainCamera.ScreenToWorldPoint(eventData.position);
+        Vector3 worldPos = mainCamera.ScreenToWorldPoint(eventData.position);// i need some help probabaly
         worldPos.z = transform.position.z;
-        transform.position = worldPos;
+
+        Vector3 pullVector = worldPos - _anchorPosition;
+        pullVector = Vector3.ClampMagnitude(pullVector, maxPullDistance);
+
+        Vector3 targetPos = _anchorPosition + pullVector;
+
+        float colliderBottom = _collider.bounds.extents.y;
+
+        RaycastHit2D hit = Physics2D.Raycast(
+            new Vector2(targetPos.x, _anchorPosition.y),
+            Vector2.down,
+            Mathf.Infinity,
+            groundLayer
+        );
+
+        if(hit.collider != null)
+        {
+            float minY = hit.point.y + colliderBottom + skinWidth;
+            if (targetPos.y < minY)
+                targetPos.y = minY;
+        }
+
+        transform.position = targetPos;
     }
 }
