@@ -12,7 +12,6 @@ public class BirdMain : MonoBehaviour,
     IDragHandler
 {
     //Unity elements
-    private SpriteRenderer spriteRenderer;
     private Camera mainCamera;
     private Rigidbody2D rigidBody;
     private LineRenderer lr;
@@ -30,11 +29,13 @@ public class BirdMain : MonoBehaviour,
     [SerializeField] private float skinWidth = 0.05f;
     [SerializeField] private Transform slingshotAnchor;
     [SerializeField] private SlingshotBands slingshotBands;
+    //Sprites change depending on user on the slingshot or flying
+    [SerializeField] private GameObject normalSpriteObject;
+    [SerializeField] private GameObject slingSpriteObject;
 
     private void Awake()
     {
         //Get all the elements on te startup
-        spriteRenderer = GetComponent<SpriteRenderer>();
         mainCamera = Camera.main;
         lr = GetComponent<LineRenderer>();
         collider = GetComponent<PolygonCollider2D>();
@@ -46,27 +47,35 @@ public class BirdMain : MonoBehaviour,
         rigidBody.gravityScale = 0f;
         rigidBody.linearVelocity = Vector2.zero;
 
+        //set aiming sprite, turn off flying sprite
+        normalSpriteObject.SetActive(false);
+        slingSpriteObject.SetActive(true);
+
         transform.position = _anchorPosition;
     }
 
     private void Update()
-    {
-        //Create a line of arrows pointing the trjectory
-        if (!lr.enabled)
-            return;
-
-        lr.SetPosition(0, transform.position);
-        lr.SetPosition(1, _anchorPosition);
-        
-
+    {        
         //Idle position
         if (_birdLaunched &&
-            rigidBody.linearVelocity.magnitude <= 0.1)
+            rigidBody.linearVelocity.magnitude <= 0.1f)
         {
-            _timeSittingAround += Time.deltaTime;
+            //_timeSittingAround += Time.deltaTime;
+            _timeSittingAround += 0.01f;
         }
 
         //Check for chicken outside of current camera bounds - hardcoded for now
+        Vector3 viewPos = mainCamera.WorldToViewportPoint(transform.position);
+        if(viewPos.x < -0.1f ||
+            viewPos.x > 1.1f ||
+            viewPos.y < -0.1f ||
+            viewPos.y > 1.1f ||
+            _timeSittingAround > 3f)
+        {
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentSceneName);
+        }
+        
         if (transform.position.y > 10 || 
             transform.position.y < -10 ||
             transform.position.x > 10 ||
@@ -77,14 +86,23 @@ public class BirdMain : MonoBehaviour,
             SceneManager.LoadScene(currentSceneName);
         }
 
+
+        //Create a line of arrows pointing the trjectory
+        if (lr.enabled)
+        {
+            lr.SetPosition(0, transform.position);
+            lr.SetPosition(1, _anchorPosition);
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        //bird is no longer the reference for the initial position - the Slingshot is
-        //_anchorPosition = transform.position;
+        _anchorPosition = transform.position;
 
-        spriteRenderer.color = Color.red;
+        //set aiming sprite, turn off flying sprite
+        normalSpriteObject.SetActive(false);
+        slingSpriteObject.SetActive(true);
+
         lr.enabled = true;
 
         rigidBody.linearVelocity = Vector2.zero;
@@ -96,7 +114,10 @@ public class BirdMain : MonoBehaviour,
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        spriteRenderer.color = Color.white;
+        //set flying sprite, turn off aiming sprite
+        normalSpriteObject.SetActive(true);
+        slingSpriteObject.SetActive(false);
+
         lr.enabled = false;
 
         Vector2 launchDirection = _anchorPosition - transform.position;

@@ -26,7 +26,9 @@ public class SlingshotBands : MonoBehaviour
     private void LateUpdate()
     {
         if (bird == null)
+        {
             return;
+        }
 
         leftBand.SetPosition(0, leftFork.position);
         leftBand.SetPosition(1, bird.position);
