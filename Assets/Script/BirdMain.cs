@@ -3,9 +3,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-
-//TODO: Add some ind of a slingshot, 'cos it's really hard to push for player off the ground
-// if you disabled the ability of the player to launch bird below the ground level.
 //Don't forget to create the readme this time.
 
 
@@ -32,6 +29,7 @@ public class BirdMain : MonoBehaviour,
     [SerializeField] private float maxPullDistance = 2.5f;
     [SerializeField] private float skinWidth = 0.05f;
     [SerializeField] private Transform slingshotAnchor;
+    [SerializeField] private SlingshotBands slingshotBands;
 
     private void Awake()
     {
@@ -91,7 +89,9 @@ public class BirdMain : MonoBehaviour,
 
         rigidBody.linearVelocity = Vector2.zero;
         rigidBody.bodyType = RigidbodyType2D.Kinematic;
-        rigidBody.gravityScale = 0f;     
+        rigidBody.gravityScale = 0f;
+
+        slingshotBands.SetBird(transform);
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -108,6 +108,8 @@ public class BirdMain : MonoBehaviour,
 
 
         _birdLaunched = true;
+
+        slingshotBands.ClearBird();
     }
 
     public void OnDrag(PointerEventData eventData)

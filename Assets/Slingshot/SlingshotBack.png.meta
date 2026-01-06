@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 71b798f703d25fa49829cea034e86564
+guid: e3f46435e9e2dfd4a8c189eaf8d976e2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5387384821721986180
-    second: Slingshot_0
+      213: 5102384496380554746
+    second: SlingshotBack_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Slingshot_0
+      name: SlingshotBack_0
       rect:
         serializedVersion: 2
-        x: 498
-        y: 38
-        width: 174
-        height: 304
+        x: 0
+        y: 0
+        width: 758
+        height: 1039
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c7b0ee85c0a2c35b0800000000000000
-      internalID: -5387384821721986180
+      spriteID: afd29367aaf4fc640800000000000000
+      internalID: 5102384496380554746
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Slingshot_0: -5387384821721986180
+      SlingshotBack_0: 5102384496380554746
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
