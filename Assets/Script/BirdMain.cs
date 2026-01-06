@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 //TODO: Add some ind of a slingshot, 'cos it's really hard to push for player off the ground
 // if you disabled the ability of the player to launch bird below the ground level.
+//Don't forget to create the readme this time.
+
+
 public class BirdMain : MonoBehaviour,
     IPointerDownHandler,
     IPointerUpHandler,
@@ -28,6 +31,7 @@ public class BirdMain : MonoBehaviour,
     [SerializeField] private float launchPower = 500;
     [SerializeField] private float maxPullDistance = 2.5f;
     [SerializeField] private float skinWidth = 0.05f;
+    [SerializeField] private Transform slingshotAnchor;
 
     private void Awake()
     {
@@ -38,12 +42,21 @@ public class BirdMain : MonoBehaviour,
         collider = GetComponent<PolygonCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
 
-        _anchorPosition = transform.position;
+        _anchorPosition = slingshotAnchor.position;
+
+        rigidBody.bodyType = RigidbodyType2D.Kinematic;
+        rigidBody.gravityScale = 0f;
+        rigidBody.linearVelocity = Vector2.zero;
+
+        transform.position = _anchorPosition;
     }
 
     private void Update()
     {
         //Create a line of arrows pointing the trjectory
+        if (!lr.enabled)
+            return;
+
         lr.SetPosition(0, transform.position);
         lr.SetPosition(1, _anchorPosition);
         
@@ -70,31 +83,38 @@ public class BirdMain : MonoBehaviour,
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        _anchorPosition = transform.position;
+        //bird is no longer the reference for the initial position - the Slingshot is
+        //_anchorPosition = transform.position;
 
         spriteRenderer.color = Color.red;
         lr.enabled = true;
 
-        rigidBody.gravityScale = 0;
-        
+        rigidBody.linearVelocity = Vector2.zero;
+        rigidBody.bodyType = RigidbodyType2D.Kinematic;
+        rigidBody.gravityScale = 0f;     
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         spriteRenderer.color = Color.white;
+        lr.enabled = false;
 
-        Vector2 directionToInitialPosition = _anchorPosition - transform.position;
+        Vector2 launchDirection = _anchorPosition - transform.position;
 
-        rigidBody.AddForce(directionToInitialPosition * launchPower);
-        rigidBody.gravityScale = 1;
+        rigidBody.bodyType = RigidbodyType2D.Dynamic;
+        rigidBody.gravityScale = 1f;
+
+        rigidBody.AddForce(launchDirection * launchPower);
+
 
         _birdLaunched = true;
-
-        lr.enabled = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (_birdLaunched)
+            return;
+
         //Get current world position
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(eventData.position);
         worldPos.z = transform.position.z;
