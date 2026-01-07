@@ -22,6 +22,7 @@ public class BirdMain : MonoBehaviour,
     private Vector3 _anchorPosition;
     private bool _birdLaunched;
     private float _timeSittingAround;
+    private float minX = -10f;
 
     //Serialized fields
     [SerializeField] private float launchPower = 500;
@@ -33,8 +34,9 @@ public class BirdMain : MonoBehaviour,
     [SerializeField] private GameObject normalSpriteObject;
     [SerializeField] private GameObject slingSpriteObject;
     //X Limits on bird's position
-    [SerializeField] private float minX = -10f;
     [SerializeField] private float maxX = 20f;
+
+    [SerializeField] private TrailRenderer trail;
 
     private void Awake()
     {
@@ -45,6 +47,7 @@ public class BirdMain : MonoBehaviour,
         rigidBody = GetComponent<Rigidbody2D>();
 
         _anchorPosition = slingshotAnchor.position;
+        transform.position = _anchorPosition;
 
         rigidBody.bodyType = RigidbodyType2D.Kinematic;
         rigidBody.gravityScale = 0f;
@@ -53,6 +56,9 @@ public class BirdMain : MonoBehaviour,
         //set aiming sprite, turn off flying sprite
         normalSpriteObject.SetActive(false);
         slingSpriteObject.SetActive(true);
+
+        trail.enabled = false;
+        trail.emitting = false;
 
         transform.position = _anchorPosition;
     }
@@ -89,8 +95,7 @@ public class BirdMain : MonoBehaviour,
 
             lr.SetPosition(0, _anchorPosition);
             lr.SetPosition(1, flippedEnd);
-        }//now i want it be not just a straignt line but a parboala ssuming the trajectory, which is influensed by the force of the torque of the bands(actualy how far was bird taken from the inital postion)
-        // 
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -129,6 +134,15 @@ public class BirdMain : MonoBehaviour,
         _birdLaunched = true;
 
         slingshotBands.ClearBird();
+
+        trail.Clear();
+        trail.enabled = true;
+        trail.emitting = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        trail.emitting = false;
     }
 
     public void OnDrag(PointerEventData eventData)
