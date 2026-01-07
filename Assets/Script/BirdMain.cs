@@ -82,9 +82,15 @@ public class BirdMain : MonoBehaviour,
         //Create a line of arrows pointing the trjectory
         if (lr.enabled)
         {
-            lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, _anchorPosition);
-        }
+            /*lr.SetPosition(0, transform.position);
+            lr.SetPosition(1, _anchorPosition);*/
+            Vector3 vector = transform.position - _anchorPosition; 
+            Vector3 flippedEnd = _anchorPosition - vector;         
+
+            lr.SetPosition(0, _anchorPosition);
+            lr.SetPosition(1, flippedEnd);
+        }//now i want it be not just a straignt line but a parboala ssuming the trajectory, which is influensed by the force of the torque of the bands(actualy how far was bird taken from the inital postion)
+        // 
     }
 
     public void OnPointerDown(PointerEventData eventData)
