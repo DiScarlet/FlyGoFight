@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-//Don't forget to create the readme this time.
+//TODO: Don't forget to create the readme this time. Bad bird restricions. Allow to exit the camera slightly.
 
 
 public class BirdMain : MonoBehaviour,
@@ -32,6 +32,9 @@ public class BirdMain : MonoBehaviour,
     //Sprites change depending on user on the slingshot or flying
     [SerializeField] private GameObject normalSpriteObject;
     [SerializeField] private GameObject slingSpriteObject;
+    //X Limits on bird's position
+    [SerializeField] private float minX = -10f;
+    [SerializeField] private float maxX = 20f;
 
     private void Awake()
     {
@@ -66,26 +69,15 @@ public class BirdMain : MonoBehaviour,
 
         //Check for chicken outside of current camera bounds - hardcoded for now
         Vector3 viewPos = mainCamera.WorldToViewportPoint(transform.position);
-        if(viewPos.x < -0.1f ||
-            viewPos.x > 1.1f ||
+        if(transform.position.x < minX ||
+            transform.position.x > maxX ||
             viewPos.y < -0.1f ||
             viewPos.y > 1.1f ||
-            _timeSittingAround > 3f)
+            _timeSittingAround > 2f)
         {
             string currentSceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentSceneName);
-        }
-        
-        if (transform.position.y > 10 || 
-            transform.position.y < -10 ||
-            transform.position.x > 10 ||
-            transform.position.x < -10 ||
-            _timeSittingAround > 3)
-        {
-            string currentSceneName = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentSceneName);
-        }
-
+        }   
 
         //Create a line of arrows pointing the trjectory
         if (lr.enabled)
@@ -170,4 +162,4 @@ public class BirdMain : MonoBehaviour,
         //Finally, assign the target position
         transform.position = targetPos; 
     }
-}
+}//

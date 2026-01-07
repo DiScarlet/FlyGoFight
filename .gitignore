@@ -84,3 +84,6 @@ Desktop.ini
 # Unity Package Manager packages
 Packages/com.unity.cinemachine/
 Packages/com.unity.inputsystem/
+
+fonts/
+TextMesh Pro/
