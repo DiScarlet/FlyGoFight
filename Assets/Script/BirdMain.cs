@@ -3,8 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-//TODO: Don't forget to create the readme this time. Bad bird restricions. Allow to exit the camera slightly.
-
+//TODO: Don't forget to create the readme this time. 
 
 public class BirdMain : MonoBehaviour,
     IPointerDownHandler,

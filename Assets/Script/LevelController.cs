@@ -1,10 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+
 
 public class LevelController : MonoBehaviour
 {
+    //level fields
     private static int _nextLevelIndex = 1;
     private Enemy[] _enemies;
+
+    //animation fields
+    public Animator transition;
+    public float transitionTime = 1f;
 
     private void OnEnable()
     {
@@ -30,6 +37,24 @@ public class LevelController : MonoBehaviour
             return;
         }
 
-        SceneManager.LoadScene(nextLevelName);
+        LoadNextLevel(nextLevelName);
+       // SceneManager.LoadScene(nextLevelName);
+    }
+
+    public void LoadNextLevel(string levelName)
+    {
+        StartCoroutine(LoadLevel(levelName));
+    }
+
+    IEnumerator LoadLevel(string levelName)
+    {
+        //Play animation
+        transition.SetTrigger("Start");
+
+        //Wait
+        yield return new WaitForSeconds(transitionTime);
+
+        //Load
+        SceneManager.LoadScene(levelName);
     }
 }
