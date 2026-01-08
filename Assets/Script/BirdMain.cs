@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-//TODO: Don't forget to create the readme this time. 
+//TODO: Don't forget to create the readme this time. Change hardcoded scene in Respawn(204 for now)
 
 public class BirdMain : MonoBehaviour,
     IPointerDownHandler,
@@ -22,6 +22,8 @@ public class BirdMain : MonoBehaviour,
     private bool _birdLaunched;
     private float _timeSittingAround;
     private float minX = -10f;
+    //manage lifes
+    private int birdsLeft = 3;
 
     //Serialized fields
     [SerializeField] private float launchPower = 500;
@@ -34,6 +36,8 @@ public class BirdMain : MonoBehaviour,
     [SerializeField] private GameObject slingSpriteObject;
     //X Limits on bird's position
     [SerializeField] private float maxX = 20f;
+    [SerializeField] private GameObject awaitngBird1;
+    [SerializeField] private GameObject awaitngBird2;
 
     [SerializeField] private TrailRenderer trail;
 
@@ -80,8 +84,9 @@ public class BirdMain : MonoBehaviour,
             viewPos.y > 1.1f ||
             _timeSittingAround > 2f)
         {
-            string currentSceneName = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentSceneName);
+            /*string currentSceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentSceneName);*/
+            RespawnTheBird();
         }   
 
         //Create a line of arrows pointing the trjectory
@@ -181,4 +186,41 @@ public class BirdMain : MonoBehaviour,
         //Finally, assign the target position
         transform.position = targetPos; 
     }
-}//
+
+    public void RespawnTheBird()
+    {
+        birdsLeft--;
+
+        if (birdsLeft <= 0)
+        {
+            SceneManager.LoadScene("Level2"); //HARDCODED
+            return;
+        }
+
+        if (birdsLeft == 2)
+            awaitngBird2.SetActive(false);
+        else if (birdsLeft == 1)
+            awaitngBird1.SetActive(false);
+
+        _birdLaunched = false;
+        _timeSittingAround = 0f;
+
+        rigidBody.linearVelocity = Vector2.zero;
+        rigidBody.angularVelocity = 0;
+        rigidBody.bodyType = RigidbodyType2D.Kinematic;
+        rigidBody.gravityScale = 0f;
+
+        transform.position = _anchorPosition;
+        transform.rotation = Quaternion.identity;
+
+        trail.Clear();
+        trail.enabled = false;
+
+        normalSpriteObject.SetActive(false);
+        slingSpriteObject.SetActive(true);
+
+        mainCamera.transform.position = new Vector3(-0.05114731f, -0.3377109f, -10f);
+
+        Debug.Log("Respawned!Lifes left: " + birdsLeft);
+    }
+}

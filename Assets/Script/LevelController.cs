@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
-
+using System;
 
 public class LevelController : MonoBehaviour
 {
@@ -38,7 +38,6 @@ public class LevelController : MonoBehaviour
         }
 
         LoadNextLevel(nextLevelName);
-       // SceneManager.LoadScene(nextLevelName);
     }
 
     public void LoadNextLevel(string levelName)
