@@ -6,12 +6,14 @@ using System;
 public class LevelController : MonoBehaviour
 {
     //level fields
-    private static int _nextLevelIndex = 1;
+    public int NextLevelIndex = 1;
     private Enemy[] _enemies;
-
+    
     //animation fields
     public Animator transition;
     public float transitionTime = 1f;
+
+    [SerializeField] private bool isMenu = false;
 
     private void OnEnable()
     {
@@ -21,6 +23,9 @@ public class LevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isMenu)
+            return;
+
         foreach (Enemy enemy in _enemies)
         {
             if (enemy != null)
@@ -28,10 +33,10 @@ public class LevelController : MonoBehaviour
         }
         Debug.Log("You killed all enemies!");
 
-        _nextLevelIndex++;
-        string nextLevelName = "Level" + _nextLevelIndex;
+        NextLevelIndex++;
+        string nextLevelName = "Level" + NextLevelIndex;
 
-        if (_nextLevelIndex >= SceneManager.sceneCountInBuildSettings)
+        if (NextLevelIndex >= SceneManager.sceneCountInBuildSettings)
         {
             Debug.Log("No more levels!");
             return;
@@ -42,10 +47,11 @@ public class LevelController : MonoBehaviour
 
     public void LoadNextLevel(string levelName)
     {
+        Debug.Log("LEVELED UP!! " + NextLevelIndex);
         StartCoroutine(LoadLevel(levelName));
     }
 
-    IEnumerator LoadLevel(string levelName)
+    public IEnumerator LoadLevel(string levelName)
     {
         //Play animation
         transition.SetTrigger("Start");

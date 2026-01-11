@@ -22,6 +22,7 @@ public class BirdMain : MonoBehaviour,
     private bool _birdLaunched;
     private float _timeSittingAround;
     private float minX = -10f;
+    private float maxTimeIdle = 1.5f;
     //manage lifes
     private int birdsLeft = 3;
 
@@ -38,6 +39,7 @@ public class BirdMain : MonoBehaviour,
     [SerializeField] private float maxX = 20f;
     [SerializeField] private GameObject awaitngBird1;
     [SerializeField] private GameObject awaitngBird2;
+    [SerializeField] private LevelController levelController;
 
     [SerializeField] private TrailRenderer trail;
 
@@ -72,8 +74,7 @@ public class BirdMain : MonoBehaviour,
         if (_birdLaunched &&
             rigidBody.linearVelocity.magnitude <= 0.1f)
         {
-            //_timeSittingAround += Time.deltaTime;
-            _timeSittingAround += 0.01f;
+            _timeSittingAround += Time.deltaTime;
         }
 
         //Check for chicken outside of current camera bounds - hardcoded for now
@@ -82,10 +83,8 @@ public class BirdMain : MonoBehaviour,
             transform.position.x > maxX ||
             viewPos.y < -0.1f ||
             viewPos.y > 1.1f ||
-            _timeSittingAround > 2f)
+            _timeSittingAround > maxTimeIdle)
         {
-            /*string currentSceneName = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentSceneName);*/
             RespawnTheBird();
         }   
 
@@ -193,7 +192,12 @@ public class BirdMain : MonoBehaviour,
 
         if (birdsLeft <= 0)
         {
-            SceneManager.LoadScene("Level2"); //HARDCODED
+            GameManager.Instance.LastLevelName =
+    SceneManager.GetActiveScene().name;
+
+            Debug.Log("LEVEL INSTANCE GAME MANAGER " + GameManager.Instance.LastLevelName);
+            string loseMenu = "LoseMenu";
+            StartCoroutine(levelController.LoadLevel(loseMenu));
             return;
         }
 

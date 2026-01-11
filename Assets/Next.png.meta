@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a1b724d11347592439e74498c30ed71e
+guid: 0784eb9202025194e88a8844ab51af88
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1718109302827518710
-    second: parallax-mountain-bg_0
+      213: -2932513457500294362
+    second: Next_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: parallax-mountain-bg_0
+      name: Next_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 272
-        height: 160
+        width: 225
+        height: 225
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6fa0458de43f7d710800000000000000
-      internalID: 1718109302827518710
+      spriteID: 62374aa2c8e9d47d0800000000000000
+      internalID: -2932513457500294362
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      parallax-mountain-bg_0: 1718109302827518710
+      Next_0: -2932513457500294362
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
