@@ -1,18 +1,20 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 public partial class MidLevelController : MonoBehaviour
 {
     [SerializeField] private LevelController levelController;
     [SerializeField] private TextMeshProUGUI textLabel;
     private string levelName;
+    private int levelNumber;
 
     private void Awake()
     {
         levelName = GameManager.Instance.LastLevelName;
         string prefix = "Level";
-        string levelNumber = levelName.Substring(prefix.Length);
+        levelNumber = Convert.ToInt32(levelName.Substring(prefix.Length));
 
         Debug.Log("LABEL " + levelNumber);
 
@@ -26,5 +28,11 @@ public partial class MidLevelController : MonoBehaviour
     public void OnRestartLevel()
     {
         StartCoroutine(levelController.LoadLevel(levelName));
+    }
+    public void OnToNextLevel()
+    {
+        string nextLevel = "Level" + (levelNumber + (int)1);
+        Debug.Log("LOADING LEVEL " + nextLevel);
+        StartCoroutine(levelController.LoadLevel(nextLevel));
     }
 } 

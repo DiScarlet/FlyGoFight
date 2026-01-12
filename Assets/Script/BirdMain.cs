@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-//TODO: Don't forget to create the readme this time. Change hardcoded scene in Respawn(204 for now)
+//TODO: Don't forget to create the readme this time.
 
 public class BirdMain : MonoBehaviour,
     IPointerDownHandler,

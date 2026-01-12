@@ -47,8 +47,12 @@ public class LevelController : MonoBehaviour
 
     public void LoadNextLevel(string levelName)
     {
-        Debug.Log("LEVELED UP!! " + NextLevelIndex);
-        StartCoroutine(LoadLevel(levelName));
+        GameManager.Instance.LastLevelName = SceneManager.GetActiveScene().name;
+
+        Debug.Log("LEVEL INSTANCE GAME MANAGER " + GameManager.Instance.LastLevelName);
+        string winMenu = "WinMenu";
+        StartCoroutine(LoadLevel(winMenu));
+        return;
     }
 
     public IEnumerator LoadLevel(string levelName)
