@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public string LastLevelName;
+    public int BirdsLeft = 3;
+    public bool AllKebabsGained = false;
 
     private void Awake()
     {

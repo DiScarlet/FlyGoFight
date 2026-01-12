@@ -15,10 +15,8 @@ public class LevelMenuController : MonoBehaviour
             return;
 
         string levelName = clickedButton.name;
-        Debug.Log("NAME " + levelName);
         levelName = levelName.Substring(prefixLength, levelName.Length - prefixLength);
 
-        Debug.Log("RELOCATING TO " + levelName);
         SceneManager.LoadScene(levelName);
-    }//2d secene transitions Unity
+    }
 }

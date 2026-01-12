@@ -8,7 +8,8 @@ public class LevelController : MonoBehaviour
     //level fields
     public int NextLevelIndex = 1;
     private Enemy[] _enemies;
-    
+    private KebabReputation[] _kebabs;
+
     //animation fields
     public Animator transition;
     public float transitionTime = 1f;
@@ -17,7 +18,7 @@ public class LevelController : MonoBehaviour
 
     private void OnEnable()
     {
-        _enemies = FindObjectsOfType<Enemy>();
+        _enemies = FindObjectsOfType<Enemy>();      
     }
 
     // Update is called once per frame
@@ -31,14 +32,13 @@ public class LevelController : MonoBehaviour
             if (enemy != null)
                 return;
         }
-        Debug.Log("You killed all enemies!");
+        _kebabs = FindObjectsOfType<KebabReputation>();
 
         NextLevelIndex++;
         string nextLevelName = "Level" + NextLevelIndex;
 
         if (NextLevelIndex >= SceneManager.sceneCountInBuildSettings)
         {
-            Debug.Log("No more levels!");
             return;
         }
 
@@ -48,8 +48,8 @@ public class LevelController : MonoBehaviour
     public void LoadNextLevel(string levelName)
     {
         GameManager.Instance.LastLevelName = SceneManager.GetActiveScene().name;
+        GameManager.Instance.AllKebabsGained = _kebabs.Length == 0 ? true : false;
 
-        Debug.Log("LEVEL INSTANCE GAME MANAGER " + GameManager.Instance.LastLevelName);
         string winMenu = "WinMenu";
         StartCoroutine(LoadLevel(winMenu));
         return;

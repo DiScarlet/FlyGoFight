@@ -11,7 +11,6 @@ public class KebabReputation : MonoBehaviour
 
         if (bird != null)
         {
-            Debug.Log("From KR initiated additon of kebab");
             Instantiate(_cloudParticlesPrefab, transform.position, Quaternion.identity);
 
             KebabController.Instance.AddKebab();

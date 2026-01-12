@@ -25,16 +25,12 @@ public class KebabController : MonoBehaviour
 
     public void AddKebab(int amount = 1)
     {
-        Debug.Log("From AddKebab in KC got additon of kebab");
         kebabCount += amount;
         UpdateUI();
-        Debug.Log("From AddKebab in KC added kebab");
     }
 
     private void UpdateUI()
     {
-        Debug.Log("UI UPDATED!");
-
        kebabCountText.text = kebabCount.ToString();
     }
 }

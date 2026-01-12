@@ -45,12 +45,13 @@ public class BirdMain : MonoBehaviour,
 
     private void Awake()
     {
-        //Get all the elements on te startup
+        //Get all the elements on the startup
         mainCamera = Camera.main;
         lr = GetComponent<LineRenderer>();
         collider = GetComponent<PolygonCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
 
+        //assign positions
         _anchorPosition = slingshotAnchor.position;
         transform.position = _anchorPosition;
 
@@ -64,8 +65,6 @@ public class BirdMain : MonoBehaviour,
 
         trail.enabled = false;
         trail.emitting = false;
-
-        transform.position = _anchorPosition;
     }
 
     private void Update()
@@ -91,8 +90,6 @@ public class BirdMain : MonoBehaviour,
         //Create a line of arrows pointing the trjectory
         if (lr.enabled)
         {
-            /*lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, _anchorPosition);*/
             Vector3 vector = transform.position - _anchorPosition; 
             Vector3 flippedEnd = _anchorPosition - vector;         
 
@@ -189,18 +186,20 @@ public class BirdMain : MonoBehaviour,
     public void RespawnTheBird()
     {
         birdsLeft--;
+        GameManager.Instance.BirdsLeft = birdsLeft;
 
+        //if no more lifes left navigate to lose menu
         if (birdsLeft <= 0)
         {
             GameManager.Instance.LastLevelName =
     SceneManager.GetActiveScene().name;
-
-            Debug.Log("LEVEL INSTANCE GAME MANAGER " + GameManager.Instance.LastLevelName);
+    
             string loseMenu = "LoseMenu";
             StartCoroutine(levelController.LoadLevel(loseMenu));
             return;
         }
 
+        //if lifes left, remove one bird from waiting and put it on the slingshot
         if (birdsLeft == 2)
             awaitngBird2.SetActive(false);
         else if (birdsLeft == 1)
@@ -224,7 +223,5 @@ public class BirdMain : MonoBehaviour,
         slingSpriteObject.SetActive(true);
 
         mainCamera.transform.position = new Vector3(-0.05114731f, -0.3377109f, -10f);
-
-        Debug.Log("Respawned!Lifes left: " + birdsLeft);
     }
 }

@@ -148,7 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65364291985473049896c49405e14c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  LastLevelNumber: 0
+  LastLevelName: 
+  BirdsLeft: 3
+  AllKebabsGained: 0
 --- !u!4 &25483561
 Transform:
   m_ObjectHideFlags: 0
@@ -3030,6 +3032,10 @@ PrefabInstance:
     - target: {fileID: 485831938352848278, guid: c2071d8c6aabbcf4189b255165285641, type: 3}
       propertyPath: m_Name
       value: LevelLoader
+      objectReference: {fileID: 0}
+    - target: {fileID: 7436690750007859707, guid: c2071d8c6aabbcf4189b255165285641, type: 3}
+      propertyPath: m_Alpha
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8251030460425081535, guid: c2071d8c6aabbcf4189b255165285641, type: 3}
       propertyPath: m_LocalPosition.x
