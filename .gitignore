@@ -87,4 +87,8 @@ Packages/com.unity.inputsystem/
 
 fonts/
 TextMesh Pro/
- Packages/*   
+
+# Ignore all packages except manifest files
+Packages/*
+!Packages/manifest.json
+!Packages/packages-lock.json
