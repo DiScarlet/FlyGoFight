@@ -68,7 +68,7 @@ public class BirdMain : MonoBehaviour,
     }
 
     private void Update()
-    {        
+    {
         //Idle position
         if (_birdLaunched &&
             rigidBody.linearVelocity.magnitude <= 0.1f)
@@ -78,20 +78,20 @@ public class BirdMain : MonoBehaviour,
 
         //Check for chicken outside of current camera bounds - hardcoded for now
         Vector3 viewPos = mainCamera.WorldToViewportPoint(transform.position);
-        if(transform.position.x < minX ||
+        if (transform.position.x < minX ||
             transform.position.x > maxX ||
             viewPos.y < -0.1f ||
             viewPos.y > 1.1f ||
             _timeSittingAround > maxTimeIdle)
         {
             RespawnTheBird();
-        }   
+        }
 
         //Create a line of arrows pointing the trjectory
         if (lr.enabled)
         {
-            Vector3 vector = transform.position - _anchorPosition; 
-            Vector3 flippedEnd = _anchorPosition - vector;         
+            Vector3 vector = transform.position - _anchorPosition;
+            Vector3 flippedEnd = _anchorPosition - vector;
 
             lr.SetPosition(0, _anchorPosition);
             lr.SetPosition(1, flippedEnd);
@@ -172,7 +172,7 @@ public class BirdMain : MonoBehaviour,
         );
 
         //If raycast returned collision, recalculate allowed position
-        if(hit.collider != null)
+        if (hit.collider != null)
         {
             float minY = hit.point.y + colliderBottom + skinWidth;
             if (targetPos.y < minY)
@@ -180,7 +180,7 @@ public class BirdMain : MonoBehaviour,
         }
 
         //Finally, assign the target position
-        transform.position = targetPos; 
+        transform.position = targetPos;
     }
 
     public void RespawnTheBird()
@@ -193,7 +193,7 @@ public class BirdMain : MonoBehaviour,
         {
             GameManager.Instance.LastLevelName =
     SceneManager.GetActiveScene().name;
-    
+
             string loseMenu = "LoseMenu";
             StartCoroutine(levelController.LoadLevel(loseMenu));
             return;
