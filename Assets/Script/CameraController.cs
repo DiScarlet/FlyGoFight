@@ -55,4 +55,4 @@ public class CameraController : MonoBehaviour
 
        transform.position = new Vector3(targetX, transform.position.y, transform.position.z);
     }
-}//problem with my code - the start position is for camera 
+}
