@@ -1428,6 +1428,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 4215855987062764741, guid: c2071d8c6aabbcf4189b255165285641, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8251030460425081535, guid: c2071d8c6aabbcf4189b255165285641, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.31276

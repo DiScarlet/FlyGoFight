@@ -69,14 +69,14 @@ public partial class MidLevelController : MonoBehaviour
         SpawnParticles(star1);  
 
         //star2
-        if(birdsLeft == 3 || allKebabsGained)
+        if(birdsLeft == 2 || allKebabsGained)
         {
             yield return new WaitForSeconds(1.5f);
             star2.gameObject.SetActive(true);
             SpawnParticles(star2);
         }
 
-        if (birdsLeft == 3 && allKebabsGained)
+        if (birdsLeft == 2 && allKebabsGained)
         {
             yield return new WaitForSeconds(1.5f);
             star3.gameObject.SetActive(true);
