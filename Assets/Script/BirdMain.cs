@@ -3,8 +3,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-//TODO: Don't forget to create the readme this time.
-
 public class BirdMain : MonoBehaviour,
     IPointerDownHandler,
     IPointerUpHandler,
