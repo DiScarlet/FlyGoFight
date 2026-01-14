@@ -25,6 +25,7 @@ public class BirdMain : MonoBehaviour,
     private float maxTimeIdle = 1.5f;
     //manage lifes
     private int birdsLeft = 3;
+    private bool _isRespawning = false;
 
     //Serialized fields
     [SerializeField] private float launchPower = 500;
@@ -65,6 +66,18 @@ public class BirdMain : MonoBehaviour,
 
         trail.enabled = false;
         trail.emitting = false;
+
+        birdsLeft = 3;
+    }
+
+    private void Start()
+    {
+        birdsLeft = 3;
+        GameManager.Instance.BirdsLeft = birdsLeft;
+
+        _birdLaunched = false;
+        _timeSittingAround = 0f;
+        _isRespawning = false;
     }
 
     private void Update()
@@ -78,12 +91,14 @@ public class BirdMain : MonoBehaviour,
 
         //Check for chicken outside of current camera bounds - hardcoded for now
         Vector3 viewPos = mainCamera.WorldToViewportPoint(transform.position);
-        if (transform.position.x < minX ||
+        if (!_isRespawning && 
+            (transform.position.x < minX ||
             transform.position.x > maxX ||
             viewPos.y < -0.1f ||
             viewPos.y > 1.1f ||
-            _timeSittingAround > maxTimeIdle)
+            _timeSittingAround > maxTimeIdle))
         {
+            _isRespawning = true;
             RespawnTheBird();
         }
 
@@ -223,5 +238,7 @@ public class BirdMain : MonoBehaviour,
         slingSpriteObject.SetActive(true);
 
         mainCamera.transform.position = new Vector3(-0.05114731f, -0.3377109f, -10f);
+
+        _isRespawning = false;
     }
 }

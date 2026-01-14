@@ -61,7 +61,7 @@ public partial class MidLevelController : MonoBehaviour
         //3 stars if all birds + all kebabs
         bool allKebabsGained = GameManager.Instance.AllKebabsGained;
         int birdsLeft = GameManager.Instance.BirdsLeft;
-
+        Debug.Log("k: " + allKebabsGained + " birds " + birdsLeft);
        
         //star 1
         yield return new WaitForSeconds(1.5f);
